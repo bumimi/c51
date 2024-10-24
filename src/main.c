@@ -27,9 +27,15 @@ void convert(unsigned int n){
     void main(void){
         int i;
         unsigned int PlusCountFlag = 0; //计数标志
+        unsigned int TimeMark = 0;      //计时标志
         GPIO_config();
         while(1){
-            PlusCountFlag++;
+            TimeMark++;
+            if(TimeMark == 50){
+             PlusCountFlag++;
+             TimeMark = 0;
+                
+            }
             convert(PlusCountFlag);
             for(i=0;i<8;i++){
                 P0 = LED_seg[LED_buff[i]];
@@ -37,5 +43,6 @@ void convert(unsigned int n){
                 delay_ms(2);
             }
             if(PlusCountFlag>1024) PlusCountFlag=0;
+            
         }
     }
