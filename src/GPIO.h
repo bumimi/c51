@@ -1,3 +1,11 @@
+/*
+ * @Author: bumimi yanouyang12@163.com
+ * @Date: 2024-10-24 14:43:09
+ * @LastEditors: bumimi yanouyang12@163.com
+ * @LastEditTime: 2024-10-25 11:33:25
+ * @FilePath: \03LED\src\GPIO.h
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 
 #ifndef	__GPIO_H
 #define	__GPIO_H
