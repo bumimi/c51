@@ -8,30 +8,31 @@
 
 
 #include	"Exti.h"
-unsigned char n=0;
-extern unsigned char bell_num;
+// unsigned char n=0;
+// extern unsigned char bell_num;
+extern unsigned char displayNum;
 /********************* INT0中断函数 *************************/
 void Ext_INT0 (void) interrupt INT0_VECTOR		//进中断时已经清除标志
 {
-	bell_num = 1;
+	displayNum = 0;
 }
 
 /********************* INT1中断函数 *************************/
 void Ext_INT1 (void) interrupt INT1_VECTOR		//进中断时已经清除标志
 {
-	bell_num = 2;
+	displayNum++;
 }
 
 /********************* INT2中断函数 *************************/
 void Ext_INT2 (void) interrupt INT2_VECTOR	//
 {
-	bell_num = 3;
+	displayNum--;
 }
 
 /********************* INT3中断函数 *************************/
 void Ext_INT3 (void) interrupt INT3_VECTOR
 {
-	bell_num = 4;
+	
 }
 
 /********************* INT4中断函数 *************************/
