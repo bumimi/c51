@@ -48,16 +48,14 @@ void convert(unsigned long n){
     //中断允许总控制位使能,低电平不允许中断
     EA = 0;
     for(i=0;i<8;i++){
-        LED_buff[i]=n%10;
-        n/=10;
+         if(n==0)LED_buff[i]=10;
+         else {
+            LED_buff[i]=n%10;
+            n/=10;
+         }
     }
-    //去零
-        for(i=7;i>0;i--){
-        if(LED_buff[i]==0)LED_buff[i]=10;
-        else break;
-        } 
     //高电平允许中断
-    EA = 1;
+   EA = 1;
 }
 
 //中断函数，每1ms调用一次
