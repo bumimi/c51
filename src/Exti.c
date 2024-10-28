@@ -8,25 +8,35 @@
 
 
 #include	"Exti.h"
-// unsigned char n=0;
-// extern unsigned char bell_num;
+#include<delay.h>
+unsigned char n=0;
+extern unsigned char bell_num;
 extern unsigned char displayNum;
+
 /********************* INT0中断函数 *************************/
 void Ext_INT0 (void) interrupt INT0_VECTOR		//进中断时已经清除标志
 {
-	displayNum = 0;
+	
+
+	//控制灯亮灭
+	// if(P0==0x00 || P0==0xff){
+	// 	P0 = ~P0;
+	// }else P0 = 0xff;
+	
 }
 
 /********************* INT1中断函数 *************************/
 void Ext_INT1 (void) interrupt INT1_VECTOR		//进中断时已经清除标志
 {
-	displayNum++;
+	
+	
+
 }
 
 /********************* INT2中断函数 *************************/
 void Ext_INT2 (void) interrupt INT2_VECTOR	//
 {
-	displayNum--;
+	
 }
 
 /********************* INT3中断函数 *************************/
