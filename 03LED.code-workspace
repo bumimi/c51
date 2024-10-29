@@ -23,7 +23,8 @@
             "*.cpp": "cpp",
             "*.cxx": "cpp",
             "*.cc": "cpp",
-            "STC15Fxxxx.H": "cpp"
+            "STC15Fxxxx.H": "cpp",
+            "USART.C": "cpp"
         },
         "C_Cpp.default.configurationProvider": "cl.eide",
         "[yaml]": {
