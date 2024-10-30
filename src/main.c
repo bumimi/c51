@@ -1,16 +1,12 @@
-/*
- * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @Date: 2024-10-29 10:47:39
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2024-10-29 11:25:56
- * @FilePath: \06USART\main.c
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
+
 #include	"config.h"
 #include	"delay.h"
 #include	"USART.h"
 #include	<stdio.h>
 #include	<string.h>
+#include    <ADC.h>
+#define VCC 4.95
+//串口配置
 void Uart1_Init(void)	//115200bps@22.1184MHz
 {
 	COMx_InitDefine COM1={0};
@@ -26,17 +22,34 @@ void Uart1_Init(void)	//115200bps@22.1184MHz
 	USART_Configuration(USART1,&COM1);
 	PrintString1("USART INIT\n\r");
 }
+
+//ADC配置
+void ADC_config(void){
+    ADC_InitTypeDef ADC_Handler = {0};
+    u8	ADC_Px = ADC_P16;			//设置要做ADC的IO,	ADC_P10 ~ ADC_P17,ADC_P1_All
+	u8	ADC_Speed = ADC_360T;		//ADC速度			ADC_90T,ADC_180T,ADC_360T,ADC_540T
+	u8	ADC_Power = ENABLE;		//ADC功率允许/关闭	ENABLE,DISABLE
+	u8	ADC_AdjResult = ADC_RES_H8L2;	//ADC结果调整,	ADC_RES_H2L8,ADC_RES_H8L2
+	u8	ADC_Polity = PolityHigh;		//优先级设置	PolityHigh,PolityLow
+	u8	ADC_Interrupt = DISABLE;	//中断允许		ENABLE,DISABLE
+    ADC_Inilize(&ADC_Handler);
+}
 void main(void)
 {
 	u8 buf[20]=0;
-	u16 a=9;
+	u16 ADCres=0;
+    float ADC_Vin1 = 0;
 	Uart1_Init();
+    ADC_config();
 	EA=1;
 	while(1)
 	{
-		sprintf(buf,"ADC_value=%d\n",a);
+        ADCres = Get_ADC10bitResult(ADC_CH6);	
+        ADC_Vin1 = (float)((ADCres/1024.00)*VCC);
+		sprintf(buf,"ADCres=%d\n",ADCres);
+		//sprintf(buf,"ADC_value=%.02f\n",ADC_Vin1);
 		PrintString1(buf);
 		memset(buf,0,sizeof(buf));
-		delay_ms(800);
+		delay_ms(2000);
 	}
 }
