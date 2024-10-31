@@ -24,7 +24,9 @@
             "*.cxx": "cpp",
             "*.cc": "cpp",
             "STC15Fxxxx.H": "cpp",
-            "USART.C": "cpp"
+            "USART.C": "cpp",
+            "LCD1602.C": "cpp",
+            "STRING.H": "cpp"
         },
         "C_Cpp.default.configurationProvider": "cl.eide",
         "[yaml]": {

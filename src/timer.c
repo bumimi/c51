@@ -9,23 +9,10 @@
 
 
 #include	"timer.h"
-extern void disp();
-unsigned int cnt_ms = 0;
-unsigned char Flag_200ms,Flag_500ms,Flag_1s;
+
 /********************* Timer0ÖÐ¶Ïº¯Êý************************/
 void timer0_int (void) interrupt TIMER0_VECTOR
 {
-	disp();
-	if(cnt_ms<1000) {
-		cnt_ms++;
-		if(cnt_ms%200==0) Flag_200ms=1;
-		if(cnt_ms%500==0) Flag_500ms=1;
-		}
-	else
-	{
-		cnt_ms=0;
-		Flag_1s = 1;
-	}
 	
 }
 
